@@ -1,0 +1,10 @@
+<ul>
+    <li>Nombre: {{ nombre }}</li>
+    <li>Apellido: {{apellido}}</li>
+    <li>Edad: <span [class]="lifetime">{{edad}}</span> </li>
+    <li>Fecha de nacimiento: {{calcBirhyear() }}</li>
+
+    <li><button mat-flat-button (click)="showInfoDialog()" >show info</button></li>
+  </ul>
+
+
