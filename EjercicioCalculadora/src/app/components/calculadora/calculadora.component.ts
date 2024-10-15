@@ -6,19 +6,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './calculadora.component.css'
 })
 export class CalculadoraComponent  {
-  resultado = 0;
- 
+  resultado = '0';
+  operacion = '';
 
-  Input( value: String){
-    if (this.resultado === '0'){
+  Input(value: string) {
+    if (this.resultado === '0') {
       this.resultado = value;
-    }else{
+    } else {
       this.resultado += value;
     }
   }
 
-  suma(){
-    this.resultado = eval(this.resultado)
+  suma() {
+    this.resultado = eval(this.resultado).toString();
+  }
+
+
+  clear(){
+    this.operacion = '';
+    this.resultado = '0';
   }
 
 }

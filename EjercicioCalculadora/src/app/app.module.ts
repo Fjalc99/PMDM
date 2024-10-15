@@ -16,8 +16,7 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
-    MatButtonModule
+    NgbModule
   ],
   providers: [
     provideAnimationsAsync()
