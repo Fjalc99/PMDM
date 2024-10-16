@@ -32,4 +32,16 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class TablaComponent {
   displayedColumns: string[] = ['numAlumno', 'nombre', 'apellidos', 'nif', 'edad', 'curso'];
   listAlumno = ELEMENT_DATA;
+
+
+  columna(column: string) {
+    if (this.displayedColumns.includes(column)) {
+    
+      this.displayedColumns.splice(this.displayedColumns.indexOf(column),1)
+    } else {
+   
+      this.displayedColumns.push(column);
+    }
+
+}
 }

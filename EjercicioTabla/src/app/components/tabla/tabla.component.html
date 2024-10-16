@@ -1,12 +1,12 @@
 
 
 <section class="example-section">
-    <mat-checkbox class="example-margin">numAlumno</mat-checkbox>
-    <mat-checkbox class="example-margin">nombre</mat-checkbox>
-    <mat-checkbox class="example-margin">apellidos</mat-checkbox>
-    <mat-checkbox class="example-margin">nif</mat-checkbox>
-    <mat-checkbox class="example-margin">edad</mat-checkbox>
-    <mat-checkbox class="example-margin">curso</mat-checkbox>
+    <mat-checkbox class="example-margin" (change)="columna('numAlumno')">numAlumno</mat-checkbox>
+    <mat-checkbox class="example-margin"(change)="columna('nombre')">nombre</mat-checkbox>
+    <mat-checkbox class="example-margin"(change)="columna('apellidos')">apellidos</mat-checkbox>
+    <mat-checkbox class="example-margin"(change)="columna('nif')">nif</mat-checkbox>
+    <mat-checkbox class="example-margin"(change)="columna('edad')">edad</mat-checkbox>
+    <mat-checkbox class="example-margin"(change)="columna('curso')">curso</mat-checkbox>
   </section>
 
 <table mat-table [dataSource]="listAlumno" class="mat-elevation-z8">
