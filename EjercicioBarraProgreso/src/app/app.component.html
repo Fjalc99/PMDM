@@ -1,2 +1,8 @@
 
-<app-barra-progreso [value]="45"></app-barra-progreso>
+
+<div>
+    <input type="number" [(ngModel)]="valorProgreso" /><br />
+    <app-barra-progreso [value]="valorProgreso"></app-barra-progreso>
+</div>
+
+<app-barra-progeso-two [progeso]="valorProgreso" ></app-barra-progeso-two>
