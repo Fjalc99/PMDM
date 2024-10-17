@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <table>
+                <thead>
+                    <th>country</th>
+                    <th>phone prefix</th>
+                </thead>
+                <tbody>
+                    @for (pais of listaPaises; track pais.nombre) {
+                        <tr>
+                            <td>
+                                {{pais.nombre}}
+                            </td>
+                            <td>
+                                {{pais.prefix}}
+                            </td>
+                            <td>
+                                {{pais.bandera}}
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
