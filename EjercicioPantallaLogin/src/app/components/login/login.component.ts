@@ -19,6 +19,8 @@ export class LoginComponent {
   }
 
   enviarFormulario() {
-    throw new Error('Method not implemented.');
+    console.log("Password: ",this.password)
+    console.log("Username: ",this.username)
+      
     }
 }
