@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <div class="row mt-2 mb-2">
+      @for( vehicle of listVehicles; track vehicle.url.split("/"[5])) {
+      <div class="col-md-3 col-12">
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">{{ vehicle.name }}</h5>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
