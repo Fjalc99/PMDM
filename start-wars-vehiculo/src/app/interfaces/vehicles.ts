@@ -1,3 +1,12 @@
+
+
+export interface list {
+  count: number
+  next: string
+  previous: any
+  results: Vehicles[]
+}
+
 export interface Vehicles {
     cargo_capacity: string
     consumables: string
