@@ -1,0 +1,17 @@
+<div class="container-fluid">
+    <div class="row mt-2 mb-2">
+      @for( people of peopleList; track people.url.split("/")[5]) {
+      <div class="col-md-3 col-12">
+        <div class="card" style="width: 18rem">
+          <div class="card-header">
+            <img [src]="getImageUrl(people.url)" class="card-img-top" alt="{{ people.name }}" />
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ people.name }}</h5>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+    
