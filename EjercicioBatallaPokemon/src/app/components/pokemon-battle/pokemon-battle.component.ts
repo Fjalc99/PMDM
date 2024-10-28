@@ -14,7 +14,7 @@ constructor(private pokemonService: PokemonService) { }
 
   pokemon1: Pokemon | undefined;
   pokemon2: Pokemon | undefined;
-  turnos: number[] = [];
+  turnos: string[] = [];
 
 
   ngOnInit(): void {
@@ -34,9 +34,16 @@ constructor(private pokemonService: PokemonService) { }
     });
   }
 
-  incrementarTurno(): void {
-    this.turnos.push(1);
+
+  atacar(atacante: any, atacado: any) {
+    this.incrementarTurno(atacante.name, atacado.name);
   }
+
+  incrementarTurno(atacante: string, atacado: string): void {
+    this.turnos.push(`${atacante} ha atacado a ${atacado}`);
+  }
+
+ 
 
 }
 

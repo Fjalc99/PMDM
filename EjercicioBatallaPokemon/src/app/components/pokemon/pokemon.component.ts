@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Pokemon } from '../../models/pokemon-response.interface';
 import { PokemonService } from '../../services/pokemon.service';
 
@@ -9,8 +9,7 @@ import { PokemonService } from '../../services/pokemon.service';
 })
 export class PokemonComponent implements OnInit {
  
-  @Input() pokemon: Pokemon | undefined;
-  turnos: number[] = [];
+  
 
   constructor(private pokemonService: PokemonService) { }
 
@@ -19,12 +18,13 @@ export class PokemonComponent implements OnInit {
   }
 
   
-  getImagenPokemon(id: String){
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id.split('/')[6]}.png`
-  }
+  @Input() pokemon: any;
+  @Output() ataque = new EventEmitter<void>();
 
-  incrementarTurno(): void {
-    this.turnos.push(1);
+  atacar() {
+    this.ataque.emit();
   }
+  getImagenPokemon(value: String){
+    return `https://img.pokemondb.net/sprites/black-white/normal/{${value}}.png`}
 
 }

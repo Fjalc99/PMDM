@@ -1,8 +1,10 @@
-<div *ngIf="pokemon">
-    <div class="card border-black align-content-between me-5 m-5" style="width: 18rem;">
-      <img [src]="getImagenPokemon(pokemon.id)" class="card-img-top" alt="Imagen de {{pokemon.name}}">
-      <div class="card-body">
-        <h3 class="mt-4">{{pokemon.name}}</h3>
-      </div>
+@if (pokemon) {
+  <div class="card border-black align-content-between me-5 m-5" style="width: 18rem;">
+    <img [src]="'https://img.pokemondb.net/sprites/black-white/normal/' + pokemon.name + '.png'" class="card-img-top" alt="Imagen de {{pokemon.name}}">
+    <div class="card-body">
+      <h3 class="mt-4">{{pokemon.name}}</h3>
+      <button class="btn btn-primary mt-2" (click)="atacar()">Atacar</button>
     </div>
   </div>
+}
+

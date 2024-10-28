@@ -1,14 +1,21 @@
 <div class="row">
   <div class="text-center">
-    Turno: {{turnos.length}} 
+    <h2>Turnos</h2>
+    <ul>
+      
+      @for (turno of turnos; track $index) {
+        <p>{{turno}}</p>
+      }
+    </ul>
   </div>
   <div class="col">
-    <app-pokemon *ngIf="pokemon1" [pokemon]="pokemon1"></app-pokemon>
+    @if (pokemon1) {
+      <app-pokemon [pokemon]="pokemon1" (ataque)="atacar(pokemon1, pokemon2)"></app-pokemon>
+    }
   </div>
   <div class="col">
-    <app-pokemon *ngIf="pokemon2" [pokemon]="pokemon2"></app-pokemon>
-  </div>
-  <div class="text-center mt-4">
-    <button class="btn btn-danger" (click)="incrementarTurno()">Atacar</button>
+    @if (pokemon2) {
+      <app-pokemon [pokemon]="pokemon2" (ataque)="atacar(pokemon2, pokemon1)"></app-pokemon>
+    }
   </div>
 </div>
