@@ -19,10 +19,13 @@ export class PokemonComponent implements OnInit {
 
   
   @Input() pokemon: any;
+  @Input() disabled: boolean = false;
   @Output() ataque = new EventEmitter<void>();
 
   atacar() {
-    this.ataque.emit();
+    if (!this.disabled) {
+      this.ataque.emit();
+    }
   }
   getImagenPokemon(value: String){
     return `https://img.pokemondb.net/sprites/black-white/normal/{${value}}.png`}

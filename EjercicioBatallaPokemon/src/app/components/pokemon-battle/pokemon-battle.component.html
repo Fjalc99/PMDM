@@ -1,21 +1,15 @@
-<div class="row">
+<<div class="row">
   <div class="text-center">
-    <h2>Turnos</h2>
-    <ul>
-      
-      @for (turno of turnos; track $index) {
-        <p>{{turno}}</p>
-      }
-    </ul>
+    <h2>Turno: {{ turnoActual }}</h2>
   </div>
   <div class="col">
     @if (pokemon1) {
-      <app-pokemon [pokemon]="pokemon1" (ataque)="atacar(pokemon1, pokemon2)"></app-pokemon>
+      <app-pokemon [pokemon]="pokemon1" (ataque)="atacar(pokemon1, pokemon2)" [disabled]="ataqueEnCurso && turnoActual !== pokemon1.name"></app-pokemon>
     }
   </div>
   <div class="col">
     @if (pokemon2) {
-      <app-pokemon [pokemon]="pokemon2" (ataque)="atacar(pokemon2, pokemon1)"></app-pokemon>
+      <app-pokemon [pokemon]="pokemon2" (ataque)="atacar(pokemon2, pokemon1)" [disabled]="ataqueEnCurso && turnoActual !== pokemon2.name"></app-pokemon>
     }
   </div>
 </div>
