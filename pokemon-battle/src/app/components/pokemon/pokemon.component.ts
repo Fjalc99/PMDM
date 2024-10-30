@@ -43,7 +43,7 @@ export class PokemonComponent implements OnInit {
         this.pokemon = pokemonResponse;
       });
 
-      this.imagenPokemon = this.imagenPokemon.transform(this.imagenPokemon);
+      this.imagenPokemon = this.imagenPokemon.transform(this.pokemonId);
   }
 
   ngOnChanges(changes: SimpleChanges) {
