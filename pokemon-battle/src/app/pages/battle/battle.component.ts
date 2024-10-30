@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
 export class BattleComponent {
   // TURN possible values: 1, 2
   pokemonTurn = 1;
-  pokemonPlayer1Id = 55;
-  pokemonPlayer2Id = 24;
+  pokemonPlayer1Id = 26;
+  pokemonPlayer2Id = 10;
   lifePokemon1 = 100;
   lifePokemon2 = 100;
   ganador: string | null = null;

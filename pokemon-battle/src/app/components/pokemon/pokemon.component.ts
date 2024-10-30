@@ -32,9 +32,9 @@ export class PokemonComponent implements OnInit {
   @Input() isMyTurn: boolean = false;
   showAnimation: boolean = false;
   ShowLoser: boolean = false;
-  imagenPokemon: string | number = '1';
+  imagenPokemon: string | undefined;
 
-  constructor(private pokemonService: PokemonService, imagenPokemon: ImagenPokemonPipe) {}
+  constructor(private pokemonService: PokemonService, private imagenPokemonPipe: ImagenPokemonPipe) {}
 
   ngOnInit(): void {
     this.pokemonService
@@ -43,7 +43,7 @@ export class PokemonComponent implements OnInit {
         this.pokemon = pokemonResponse;
       });
 
-      this.imagenPokemon = this.imagenPokemon.transform(this.pokemonId);
+      
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -60,6 +60,9 @@ export class PokemonComponent implements OnInit {
         this.ShowLoser = false;
       }
     }
+    if(changes['pokemonId']){
+      this.imagenPokemon = this.imagenPokemonPipe.transform(changes['pokemonId'].currentValue);
+  }
   }
 
   getProgressBarColor(): string {

@@ -17,8 +17,8 @@ import { ImagenPokemonPipe } from './pipes/imagen-pokemon.pipe';
     provideHttpClient(),
     provideLottieOptions({
       player: () => import('lottie-web'),
-    }),
-  ],
+    }), ImagenPokemonPipe
+  ], 
   bootstrap: [AppComponent],
 })
 export class AppModule {}
