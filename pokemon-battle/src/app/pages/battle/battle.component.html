@@ -1,0 +1,22 @@
+<div class="container fluid">
+  <div class="row">
+    <div class="col-md-4 col-12">
+      <app-pokemon
+        [pokemonId]="pokemonPlayer1Id"
+        [life]="lifePokemon1"
+        [isMyTurn]="pokemonTurn == 1"
+        [ganador]="ganador"
+        (onAttackDone)="applyDamage($event)"
+      ></app-pokemon>
+    </div>
+    <div class="col-md-4 col-12">
+      <app-pokemon
+        [pokemonId]="pokemonPlayer2Id"
+        [life]="lifePokemon2"
+        [isMyTurn]="pokemonTurn == 2"
+        [ganador]="ganador"
+        (onAttackDone)="applyDamage($event)"
+      ></app-pokemon>
+    </div>
+  </div>
+</div>
