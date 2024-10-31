@@ -1,0 +1,99 @@
+<div class="container-fluid" style="width: 400px">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center">Add new student</h1>
+      </div>
+    </div>
+    <div [hidden]="submitted">
+      <form
+        action=""
+        method="post"
+        (ngSubmit)="addAlumno()"
+        #studentForm="ngForm"
+      >
+        <div class="row">
+          <div class="col-12 mb-3">
+            <label for="nombre" class="form-label">Nombre *</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              name="nombre"
+              placeholder="Nombre"
+              required
+              [(ngModel)]="alumno.nombre"
+            />
+          </div>
+          <div class="col-12 mb-3">
+            <label for="apellidos" class="form-label">Apellidos *</label>
+            <input
+              type="text"
+              class="form-control"
+              id="apellidos"
+              name="apellidos"
+              placeholder="Apellidos"
+              required
+              [(ngModel)]="alumno.apellidos"
+            />
+          </div>
+          <div class="col-12 mb-3">
+            <label for="comoConocioLaPagina" class="form-label">Como Conocio la pagina *</label>
+  
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="comoConocioLaPagina"
+              id="comoConocioLaPagina"
+              required
+              [(ngModel)]="alumno.comoConocioLaPagina"
+            >
+              <option value="" selected="selected">-Select one-</option>
+              @for(Pagina of OpcionComoConocioLaPagina; track Pagina){
+              <option [value]="OpcionComoConocioLaPagina">{{ OpcionComoConocioLaPagina }}</option>
+              }
+            </select>
+          </div>
+          <div class="col-6 mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input
+              type="number"
+              class="form-control"
+              id="age"
+              name="age"
+              [(ngModel)]="alumno"
+            />
+          </div>
+          <div class="col-6 mb-3">
+            <label for="phone" class="form-label">Phone number *</label>
+            <input
+              type="text"
+              class="form-control"
+              id="phone"
+              name="phone"
+              placeholder="Phone number"
+              required
+              [(ngModel)]="alumno.telefono"
+            />
+          </div>
+          <div class="col-12">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              style="width: 100%"
+              [disabled]="!studentForm.form.valid"
+            >
+              Create student
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row" [hidden]="!submitted">
+      <div class="col-12">
+        <div class="alert alert-success d-flex align-items-center" role="alert">
+          <div>Formulario enviado</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
