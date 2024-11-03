@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormAlumnoComponent } from './components/form-alumno/form-alumno.component';
+import { LetraNifPipe } from './pipes/letra-nif.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormAlumnoComponent
+    FormAlumnoComponent,
+    LetraNifPipe
   ],
   imports: [
     BrowserModule,

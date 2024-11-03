@@ -1,14 +1,14 @@
 <div class="container-fluid" style="width: 400px">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center">Add new student</h1>
+        <h1 class="text-center">Registrate</h1>
       </div>
     </div>
     <div [hidden]="submitted">
       <form
         action=""
         method="post"
-        (ngSubmit)="addAlumno()"
+        (ngSubmit)="onSubmit()"
         #studentForm="ngForm"
       >
         <div class="row">
@@ -37,6 +37,19 @@
             />
           </div>
           <div class="col-12 mb-3">
+            <label for="dni" class="form-label">Dni *</label>
+            <input
+              type="text"
+              class="form-control"
+              id="dni"
+              name="dni"
+              placeholder="Dni"
+              required
+              [(ngModel)]="alumno.dni"
+            />
+            <span class="alert-danger">{{alumno.dni | letraNif}}</span>
+          </div>
+          <div class="col-12 mb-3">
             <label for="comoConocioLaPagina" class="form-label">Como Conocio la pagina *</label>
   
             <select
@@ -48,33 +61,77 @@
               [(ngModel)]="alumno.comoConocioLaPagina"
             >
               <option value="" selected="selected">-Select one-</option>
-              @for(Pagina of OpcionComoConocioLaPagina; track Pagina){
-              <option [value]="OpcionComoConocioLaPagina">{{ OpcionComoConocioLaPagina }}</option>
+              @for(pagina of OpcionComoConocioLaPagina; track pagina){
+              <option [value]="pagina">{{ pagina }}</option>
+              }
+            </select>
+          </div>
+          <div class="col-12 mb-3">
+            <label for="sexo" class="form-label">Sexo*</label>
+  
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="sexo"
+              id="sexo"
+              required
+              [(ngModel)]="alumno.sexo"
+            >
+              <option value="" selected="selected">-Select one-</option>
+              @for(sexo of ListaSexo; track sexo){
+              <option [value]="sexo">{{ sexo }}</option>
               }
             </select>
           </div>
           <div class="col-6 mb-3">
-            <label for="age" class="form-label">Age</label>
+            <label for="age" class="form-label">Email</label>
             <input
-              type="number"
+              type="email"
               class="form-control"
-              id="age"
-              name="age"
-              [(ngModel)]="alumno"
+              id="email"
+              name="email"
+              [(ngModel)]="alumno.email"
             />
           </div>
           <div class="col-6 mb-3">
-            <label for="phone" class="form-label">Phone number *</label>
+            <label for="telefono" class="form-label">Telefono *</label>
             <input
               type="text"
               class="form-control"
-              id="phone"
-              name="phone"
-              placeholder="Phone number"
+              id="telefono"
+              name="telefono"
+              placeholder="Telefono"
               required
               [(ngModel)]="alumno.telefono"
             />
           </div>
+          <div class="col-6 mb-3">
+            <label for="password" class="form-label">Contraseña *</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="Contraseña"
+              required
+              [(ngModel)]="alumno.password"
+              (input)="validarContrasena()"
+            />
+          </div>
+          <div class="col-6 mb-3">
+            <label for="repPassword" class="form-label">Repetir Contraseña *</label>
+            <input
+              type="text"
+              class="form-control"
+              id="repPassword"
+              name="repPassword"
+              placeholder="Repetir Contraseña"
+              required
+              [(ngModel)]="alumno.repPassword"
+              (input)="validarContrasena()"
+            />
+          </div>
+          <div *ngIf="mensajeContrasena" class="error border-black alert-danger">{{ mensajeContrasena }}</div>
           <div class="col-12">
             <button
               type="submit"
