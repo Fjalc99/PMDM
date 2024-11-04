@@ -37,7 +37,7 @@
             />
           </div>
           <div class="col-12 mb-3">
-            <label for="dni" class="form-label">Dni *</label>
+            <label for="dni" class="form-label">Dni *</label>  
             <input
               type="text"
               class="form-control"
@@ -45,9 +45,11 @@
               name="dni"
               placeholder="Dni"
               required
-              [(ngModel)]="alumno.dni"
-            />
-            <span class="alert-danger">{{alumno.dni | letraNif}}</span>
+              [(ngModel)]="alumno.dni"              
+            /> 
+
+            <span class="fw-bold">{{alumno.dni | letraNif}}</span>
+            
           </div>
           <div class="col-12 mb-3">
             <label for="comoConocioLaPagina" class="form-label">Como Conocio la pagina *</label>
@@ -115,7 +117,7 @@
               placeholder="Contraseña"
               required
               [(ngModel)]="alumno.password"
-              (input)="validarContrasena()"
+              (input)="validarContrasenas()"
             />
           </div>
           <div class="col-6 mb-3">
@@ -128,10 +130,10 @@
               placeholder="Repetir Contraseña"
               required
               [(ngModel)]="alumno.repPassword"
-              (input)="validarContrasena()"
+              (input)="validarContrasenas()"
             />
           </div>
-          <div *ngIf="mensajeContrasena" class="error border-black alert-danger">{{ mensajeContrasena }}</div>
+          <div *ngIf="mensajeContrasena" class="error border-black alert-danger fw-bold">{{ mensajeContrasena }}</div>
           <div class="col-12">
             <button
               type="submit"

@@ -17,6 +17,7 @@ export class FormAlumnoComponent implements OnInit {
 
   constructor() {}
   ngOnInit(): void {
+    this.validarContrasenas();
   }
 
   addAlumno() {
@@ -40,6 +41,7 @@ export class FormAlumnoComponent implements OnInit {
       console.log("Error: las contraseñas no coinciden.");
     } else {
       console.log("Datos de registro:", this.alumno);
+      this.submitted = true;
       this.mensajeContrasena = '';
     }
   }
