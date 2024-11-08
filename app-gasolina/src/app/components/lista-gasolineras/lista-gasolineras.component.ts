@@ -5,6 +5,10 @@ import { FormControl } from '@angular/forms';
 import { debounceTime, map, Observable, startWith } from 'rxjs';
 import { CodeList } from '../../models/codigoPostal-response.interfaces';
 import { CodigoPostalService } from '../../services/codigo-postal.service';
+import { ComunidadesAutonomas } from '../../models/comunidadesAutonomas-response';
+import { provinciasResponse } from '../../models/provincia-response.interfaces';
+import { ComunidadesAutonomasService } from '../../services/comunidades-autonomas.service';
+import { ProvinciasService } from '../../services/provincias.service';
 
 @Component({
   selector: 'app-lista-gasolineras',
@@ -31,10 +35,17 @@ export class ListaGasolinerasComponent implements OnInit {
   myControl = new FormControl();
   filteredOptions: Observable<string[]> | undefined;
   listadoCodigosPostales: CodeList[] = [];
+  listadoComunidadesAutonomas: ComunidadesAutonomas[] = [];
+  listaProvincias: provinciasResponse[] = [];
+  comunidadSeleccionada: string = '';
+  provinciaSeleccionada: string = '';
+  comunidadSeleccionadaID: boolean = false;
 
   constructor(
     private gasolineraService: GasolineraService,
-    private codigoPostalService: CodigoPostalService
+    private codigoPostalService: CodigoPostalService,
+    private comunidadesAutonomasService: ComunidadesAutonomasService,
+    private provinciasService: ProvinciasService
   ) {}
 
   ngOnInit() {
@@ -44,10 +55,7 @@ export class ListaGasolinerasComponent implements OnInit {
       try {
         parsedData = JSON.parse(respuestaEnString);
         let arrayGasolineras = parsedData['ListaEESSPrecio'];
-        this.listadoGasolineras = this.cleanProperties(arrayGasolineras).splice(
-          0,
-          200
-        );
+        this.listadoGasolineras = this.cleanProperties(arrayGasolineras)
         this.gasolinerasFiltradas = this.listadoGasolineras;
         console.log(this.listadoGasolineras);
       } catch (error) {
@@ -59,13 +67,58 @@ export class ListaGasolinerasComponent implements OnInit {
       });
       this.initalizeFilteredOptions();
     });
+    
+    this.comunidadesAutonomasService.getComunidadesAutonomas().subscribe((respuesta) => {
+      this.listadoComunidadesAutonomas = respuesta;
+    });
 
     
-   
-  
+}
+
+filterUnaComunidad(IDCCAA: string) {  
+  this.gasolineraService.getcomunidadAutonoma(IDCCAA).subscribe((respuesta) =>{
+    const respuestaEnString = JSON.stringify(respuesta);
+      let parsedData;
+      parsedData = JSON.parse(respuestaEnString);
+      let arrayGasolineras = parsedData['ListaEESSPrecio'];
+      this.listadoGasolineras = this.cleanProperties(arrayGasolineras)
+      this.gasolinerasFiltradas = this.listadoGasolineras;
+  });
+  if (IDCCAA === 'all') {
+    this.comunidadSeleccionadaID = false;
+    this.gasolinerasFiltradas = this.listadoGasolineras;
+  }else{
+    this.comunidadSeleccionadaID = true;
+    this.buscarProvincias(IDCCAA);
   }
 
- 
+}
+  
+
+  buscarProvincias(IDCCAA: string) {
+    this.provinciasService.getProvinciasPorComunidades(IDCCAA).subscribe((respuesta) => {
+      this.listaProvincias = respuesta;
+    });
+  }
+
+
+  filterPorProvincia(IDPovincia: string) {
+    this.gasolineraService.getPorUnaProvincia(IDPovincia).subscribe((respuesta) => {
+      const respuestaEnString = JSON.stringify(respuesta);
+      let parsedData;
+      parsedData = JSON.parse(respuestaEnString);
+      let arrayGasolineras = parsedData['ListaEESSPrecio'];
+      this.listadoGasolineras = this.cleanProperties(arrayGasolineras);
+      this.gasolinerasFiltradas = this.listadoGasolineras;
+  });
+   
+  }
+
+
+
+
+
+
 initalizeFilteredOptions() {
   this.filteredOptions = this.myControl.valueChanges.pipe(
     startWith(''),
@@ -251,4 +304,10 @@ initalizeFilteredOptions() {
       this.gasolinerasFiltradas
     );
   }
-}
+
+  
+
+
+
+  
+  }

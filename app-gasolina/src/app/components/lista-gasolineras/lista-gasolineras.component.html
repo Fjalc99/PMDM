@@ -50,7 +50,7 @@
           <input type="text" placeholder="Escribe el código postal" aria-label="Text" matInput [formControl]="myControl"
             [matAutocomplete]="auto" [(ngModel)]="codigoPostalBuscado">
           <mat-autocomplete #auto="matAutocomplete">
-            @for (option of codigosPostalesAutocompleter | async; track option) {
+            @for (option of filteredOptions | async; track option) {
             <mat-option [value]="option">{{option}}</mat-option>
             }
           </mat-autocomplete>
@@ -79,21 +79,21 @@
     <div class="d-flex mb-4 me-3">
       <mat-form-field>
         <mat-label class="w-25">Comunidades</mat-label>
-        <mat-select (selectionChange)="filtrarPorComunidadAutonoma($event.value)"
+        <mat-select (selectionChange)="filterUnaComunidad($event.value)"
           required>
           <mat-option selected value="all">Todas</mat-option>
-          @for (comunidades of listaComunidadesAutonomas; track $index) {
+          @for (comunidades of listadoComunidadesAutonomas; track $index) {
           <mat-option value="{{comunidades.IDCCAA}}">{{comunidades.CCAA}}</mat-option>
           }
         </mat-select>
 
       </mat-form-field>
     </div>
-    @if (comunidadIsSeleccionada) {
+    @if (comunidadSeleccionadaID) {
     <div id="provincia" class="d-flex mb-4 me-3">
       <mat-form-field>
         <mat-label class="w-25">Provincias</mat-label>
-        <mat-select (selectionChange)="filtrarPorProvincia($event.value)" required>
+        <mat-select (selectionChange)="filterPorProvincia($event.value)" required>
           @for (provincia of listaProvincias; track $index) {
           <mat-option value="{{provincia.IDPovincia}}">{{provincia.Provincia}}</mat-option>
           }
@@ -104,6 +104,8 @@
     }
   </div>
 </nav>
+
+
 
 <div class="row mt-4 ">
   @for(gasolinera of gasolinerasFiltradas; track
@@ -118,7 +120,7 @@
             <p class="card-text">Provincia: {{gasolinera.provincia}}</p>
             <p class="mt-5">Horario <br>{{gasolinera.horario}}</p>
             <p class="card-text">{{gasolinera.postalCode}}</p>
-             <a [href]="gasolinera | pipeGoogleMaps" target="blank" class="w-50 me-3"><button class="btn btn-primary">Mostrar Mapa</button></a>
+             <a [href]="gasolinera | pipeGoogleMaps" target="blank" class="w-50 me-3"><button class="btn btn-primary">Mapa</button></a>
           </div>
           <div>
             @if (selectedFuel === 'all') {

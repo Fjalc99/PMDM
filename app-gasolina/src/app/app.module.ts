@@ -47,7 +47,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     AsyncPipe,
     BrowserAnimationsModule,
     MatCheckboxModule,
-    NgModule,
     MatFormFieldModule
   ],
   providers: [
